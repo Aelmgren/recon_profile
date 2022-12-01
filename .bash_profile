@@ -18,6 +18,18 @@ crtndstry(){
 ./tools/crtndstry/crtndstry $1
 }
 
+msq(){
+echo "mysql -u anders -p -sN -e"
+}
+
+adns(){
+altdns -i $1.txt -o data_output -w words.txt -r -s $1_output.txt
+}
+
+nmapscan(){
+nmap -sC -sV -oA $2 --stylesheet nmap-bootstrap.xsl -p442,8442,8080,80,8081,7443,4443 $1
+}
+
 am(){ #runs amass passively and saves to json
 amass enum --passive -d $1 -json $1.json
 jq .name $1.json | sed "s/\"//g"| httprobe -c 60 | tee -a $1-domains.txt
